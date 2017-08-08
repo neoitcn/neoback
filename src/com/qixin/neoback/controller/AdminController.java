@@ -50,13 +50,12 @@ public class AdminController {
 	 * private String uploadContentType;// 接收文件上传的MIME类型
 	 */
 	@RequestMapping(value = "/uploadNews")
-	public String uploadNews( String content,HttpServletRequest request){
+	public String uploadNews(String content,Map<String, Object> map,HttpServletRequest request){
 		
-		Map map=new HashMap<>();
-		
-		System.out.println("内容是:"+content);
+		System.out.println("content:"+content);
+	
 		map.put("content", content);
-		
+		 
 		return "main";
 		
 	}
