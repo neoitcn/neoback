@@ -45,7 +45,7 @@
 	</bean>
 	
 	<!-- 配置Biz -->
-	<bean id="userinfoBiz" class="com.qixin.neoback.biz.impl.UserBizImpl" autowire="byName"></bean>
+	
 	<bean id="adminBiz" class="com.qixin.neoback.biz.impl.AdminBizImpl" autowire="byName"></bean>
 	
 

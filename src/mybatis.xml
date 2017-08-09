@@ -22,8 +22,8 @@
     
     <!-- mapper配置 -->
 	<mappers>
-		<mapper resource="com/qixin/neoback/mapper/UserinfoMapper.xml" />
-		
+		<mapper resource="com/qixin/neoback/mapper/NewsMapper.xml" />
+		<mapper resource="com/qixin/neoback/mapper/Sys_userMapper.xml" />
 		
 	</mappers>
 </configuration>	
