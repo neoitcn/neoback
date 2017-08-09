@@ -6,10 +6,10 @@
     "imageCompressEnable": true,
     "imageCompressBorder": 1600, 
     "imageInsertAlign": "none", 
-    "imageUrlPrefix":"D:/news/", 
-    "imagePathFormat":"/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "imageUrlPrefix":"/news/images", 
+    "imagePathFormat":"/news/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
     
-    
+     
     "scrawlActionName": "uploadscrawl", 
     "scrawlFieldName": "upfile",
     "scrawlPathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", 
