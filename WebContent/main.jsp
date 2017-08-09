@@ -22,7 +22,7 @@
 <body>
     欢迎来到启芯教育。。。。。。
     
-   内容是: ${content}
+       内容是: ${content}
   
 </body>
 </html> 

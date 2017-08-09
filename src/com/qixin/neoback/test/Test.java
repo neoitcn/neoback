@@ -15,9 +15,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.qixin.neoback.biz.AdminBiz;
-import com.qixin.neoback.biz.UserBiz;
+
 import com.qixin.neoback.entity.News;
-import com.qixin.neoback.entity.Userinfo;
+
 
 
 

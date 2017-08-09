@@ -3,17 +3,21 @@ package com.qixin.neoback.controller;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -44,24 +48,59 @@ public class AdminController {
 	@Resource(name = "adminBiz")
 	private AdminBiz adminBiz;
 
-	// 文件上传需要的参数
-	/*
-	 * private File upload;// 上传的文件 private String uploadFileName;//上传的文件名陈
-	 * private String uploadContentType;// 接收文件上传的MIME类型
-	 */
+	//1.上传新闻
 	@RequestMapping(value = "/uploadNews")
-	public String uploadNews(String content,Map<String, Object> map,HttpServletRequest request){
+	public String uploadNews(News news,
+			String content,
+			@RequestParam(value = "smallpicture")MultipartFile smallpicture,
+			Map<String, Object> map,
+			HttpServletRequest request) {
 		
-		System.out.println("content:"+content);
-	
-		map.put("content", content);
-		 
+		System.out.println("content:" + content);
+		//加上HTML头和尾 ,生成HTML页面;
+		String htmlcontent="<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>Insert title here</title></head><body>"
+		               +content+"</body></html>";
+		
+		//利用当前日期作为新闻地址  和  缩略图名称
+		long lon = new Date().getTime();
+		news.setHtmlUrl(lon + ".html");
+		news.setCreateTime(new Date());
+		System.out.println("path:" + lon);
+		// File file=new File("D:/test.html");
+		File file = new File("D:/news/"+ news.getType() + "/" + lon + ".html");
+
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+				if(!file.createNewFile()) {
+					System.out.println("创建了新文件...");
+				}
+			}
+			//通过字符流写入到指定文件夹
+			FileOutputStream out = new FileOutputStream(file, true);
+			StringBuffer sb = new StringBuffer();
+			sb.append(htmlcontent);
+			out.write(sb.toString().getBytes("utf-8"));
+			out.close();
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("Done");
+
+		map.put("content", htmlcontent);
+
 		return "main";
-		
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/addNews", method = RequestMethod.POST)
 	public String addNews(@RequestParam(value = "headimg") MultipartFile headimg, News news, String newscontent,
 			String picturedesc, HttpServletRequest req) {
@@ -91,26 +130,14 @@ public class AdminController {
 
 			if (headimg != null) {
 				// 设定图片保存的路径path
-				 /*File file=new File("neoback/WebContent/NEWS/IMAGES");
-				 
-				 //"C:/Users/zhu/workspace/neoback/WebContent/NEWS/IMAGES/";
-				 String path=file.getAbsolutePath().replace("\\", "/")+"/";
-			     System.out.println("gg:"+path);*/
-			    String path=" C:/Users/zhu/workspace/neoback/WebContent/NEWS/IMAGES/";
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    File f2 = new File(this.getClass().getResource("").getPath());  
-		        System.out.println("dd:"+f2); 
-		        File directory = new File("");// 参数为空  
-		        String courseFile = directory.getCanonicalPath();  
-		        System.out.println("KK:"+courseFile);  
-				
-				
+				/*
+				 * File file=new File("neoback/WebContent/NEWS/IMAGES");
+				 * 
+				 * //"C:/Users/zhu/workspace/neoback/WebContent/NEWS/IMAGES/";
+				 * String path=file.getAbsolutePath().replace("\\", "/")+"/";
+				 * System.out.println("gg:"+path);
+				 */
+				String path = " C:/Users/zhu/workspace/neoback/WebContent/NEWS/IMAGES/";
 				String filename = headimg.getOriginalFilename();// 获取文件名称
 				int index = filename.lastIndexOf(".");
 				String filetype = filename.substring(index + 1);
@@ -139,9 +166,9 @@ public class AdminController {
 			// ------------------------------ 以下是 生成新闻链接文件HTML-----------------
 			Configuration cfg = new Configuration();
 			// 设置模板路径test.ftl
-			 //File file = new File("WebContent/NEWS/newsmold"); String dir = file.getAbsolutePath().replace("\\", "/") + "/";
-			 String dir ="C:/Users/zhu/workspace/neoback/WebContent/NEWS/newsmold/";
-			 
+			// File file = new File("WebContent/NEWS/newsmold"); String dir =
+			// file.getAbsolutePath().replace("\\", "/") + "/";
+			String dir = "C:/Users/zhu/workspace/neoback/WebContent/NEWS/newsmold/";
 
 			// 从哪里加载模板文件
 			cfg.setDirectoryForTemplateLoading(new File(dir));
@@ -153,7 +180,7 @@ public class AdminController {
 			// 定义数据模型 (传送到新闻展示页面的数据)
 			Map map = new HashMap();
 			map.put("abc", "启芯教育欢迎你....");
-			map.put("news", news);
+			// map.put("content", content);
 			map.put("newscontent", newscontent);
 			map.put("picname", picname);
 

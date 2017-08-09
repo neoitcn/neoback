@@ -16,11 +16,23 @@
 <body>
 
   <div  style="margin:auto;width:1025px;">
-	<form action="../admin/uploadNews.do" method="post">
+	<form action="../admin/uploadNews.do" method="post"  enctype="multipart/form-data">
 		<!-- 加载编辑器的容器 -->
-		<script id="container" name="content" type="text/plain" style="width:1024px;height:450px;">
-                                          这里写你的初始化内容...
-    	</script>
+		请输入新闻标题:<input type="text"  name="title" /><br><br>
+		请上传新闻缩略图:<input type="file"  name="smallpicture" /><br><br>
+		请输入新闻概要:<textarea rows="3" cols="50" name="resume"></textarea><br><br>
+		请选择新闻类型:<select  id =  "sel" name="type" >
+					 <option  value = "1" >头条新闻</option >
+					 <option  value = "2" selected = "selected" >学院新闻</option >
+					 </select ><br>
+		 请选择显示级别:<select  id =  "sel" name="level" >
+		 <option  value = "1"  selected = "selected">优先显示</option >
+		 <option  value = "2" >普通显示</option >
+		 </select ><br>
+		 请输入文章作者:<input type="text"  name="author" /><br>
+		  请输入发布者:<input type="text"  name="creator" /><br>
+					 
+	<script id="container" name="content" type="text/plain" style="width:1024px;height:450px;"></script>
 		<input type="submit" value="提交" />
 	</form>
   </div>

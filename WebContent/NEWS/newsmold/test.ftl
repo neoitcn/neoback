@@ -13,10 +13,7 @@
 <body>
 
    
-	<span style="font-family:Microsoft YaHei;">第一个测试程序：${abc}</span>
-	<span style="font-family:Microsoft YaHei;">${news.title}</span>
-	<img src="NEWS/IMAGES/${picname}"/>
-    <span style="font-family:Microsoft YaHei;">${newscontent}</span>
+	${content}
     
 
 
