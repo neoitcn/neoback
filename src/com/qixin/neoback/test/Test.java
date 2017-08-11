@@ -1,4 +1,4 @@
-package com.qixin.neoback.test;
+/*package com.qixin.neoback.test;
 
 import java.io.File;
 import java.io.InputStream;
@@ -16,20 +16,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.qixin.neoback.biz.AdminBiz;
 
-import com.qixin.neoback.entity.News;
-
-
-
-
 public class Test {
 
 	public static void main(String[] args) throws Exception {
 		
-		/*InputStream inputStream = Test.class.getResourceAsStream("/mybatis.xml");
+		InputStream inputStream = Test.class.getResourceAsStream("/mybatis.xml");
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inputStream);
-		SqlSession sqlSession = factory.openSession();*/
+		SqlSession sqlSession = factory.openSession();
 		
-		/*ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 	    UserBiz userbiz=(UserBiz) ac.getBean("userinfoBiz");
 	    AdminBiz adminbiz=(AdminBiz) ac.getBean("adminBiz");
 	    Map<String,Object>  map=new HashMap<String,Object>();
@@ -40,17 +35,17 @@ public class Test {
 	    
 	   for (News news : adminbiz.findNewsByTypeAndLevel(map)) {
 		   System.out.println("名字:"+news.getResume());
-	   }*/
+	   }
 	    
 	    
 	    
 	    
-	    /* map.put("name", "admin");
+	     map.put("name", "admin");
 	    map.put("password", "123456");
 	    System.out.println("ddd:"+userbiz.findUserByPsdAndName(map));
 		System.out.println("gg:"+userbiz.selectByPrimaryKey(1).getMobile());
-		*/
-		/*Userinfo user1=new Userinfo();
+		
+		Userinfo user1=new Userinfo();
 		SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 		
 		Date date1=sdf.parse("2017-07-06 09:46:00");
@@ -61,7 +56,7 @@ public class Test {
 		user1.setPassword("123456");
 		userbiz.insertSelective(user1);
 		System.out.println("fff:"+userbiz.insertSelective(user1));
-	    System.out.println("gg:"+userbiz.selectByPrimaryKey(2).getCreatetime());*/
+	    System.out.println("gg:"+userbiz.selectByPrimaryKey(2).getCreatetime());
 		
 		
 		
@@ -74,3 +69,4 @@ public class Test {
 	}
 
 }
+*/

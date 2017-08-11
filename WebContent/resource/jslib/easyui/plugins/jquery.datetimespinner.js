@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * jQuery EasyUI 1.5.1
  * 
@@ -7,6 +8,17 @@
  * To use it on other terms please contact us: info@jeasyui.com
  *
  */
+=======
+/**
+ * jQuery EasyUI 1.5.1
+ * 
+ * Copyright (c) 2009-2016 www.jeasyui.com. All rights reserved.
+ *
+ * Licensed under the freeware license: http://www.jeasyui.com/license_freeware.php
+ * To use it on other terms please contact us: info@jeasyui.com
+ *
+ */
+>>>>>>> 17ac48076d7a7be7437c8367312af01562698b1c
 (function($){
 function _1(_2){
 var _3=$.data(_2,"datetimespinner").options;

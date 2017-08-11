@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html,body,p,a,div,span,table,input,select,textarea{
 	font-family:'Microsoft YaHei UI';
 }
@@ -79,4 +80,87 @@ html,body,p,a,div,span,table,input,select,textarea{
 }
 .ico-gemo{
 	background:url('../img/ico/lastposition.png') no-repeat;
+=======
+html,body,p,a,div,span,table,input,select,textarea{
+	font-family:'Microsoft YaHei UI';
+}
+
+.ico-container{
+	display:inline-block;
+	height:16px;
+	width:16px;
+	padding:0;
+}
+
+.ico-btn{
+	/* width:20px; */
+	height:20px;
+	font-size:16px;
+	font-family:'Microsoft YaHei UI';
+	text-align: center;
+	vertical-align: middle;
+	cursor:pointer;
+	padding:2px 3px;
+	border:1px solid rgba(0,0,0,0);
+}
+
+.ico-hover{
+	
+}
+
+.ico-hover:hover{
+	border:1px solid #E0ECFF;
+	border-radius:5px;
+	background-color:#EFF5FF;
+}
+.ico-hover:active{
+	background-color:#83ccff;
+	border-color:#44b2ff;
+}
+.ico-content{
+	background-repeat:no-repeat;
+	background-size:16px 16px;
+	background-position-y:center;
+	padding-left:18px;
+	display: inline-block;
+}
+.ico-add{
+	background-image:url(../img/ico/add.png);
+}
+.ico-add-disabled{
+	background-image:url(../img/ico/add_disabled.png);
+}
+.ico-edit{
+	background-image:url(../img/ico/edit.png);
+}
+.ico-edit-disabled{
+	background-image:url(../img/ico/edit_disabled.png);
+}
+.ico-remove{
+	background-image:url(../img/ico/remove.png);
+}
+.ico-remove-disabled{
+	background-image:url(../img/ico/remove_disabled.png);
+}
+.ico-ok{
+	background-image:url(../img/ico/confirm.png);
+}
+.ico-ok-disabled{
+	background-image:url(../img/ico/confirm_disabled.png);
+}
+.ico-refresh{
+	background-image:url(../img/ico/refresh.png);
+}
+.ico-search{
+	background-image:url(../img/ico/search.png);
+}
+.ico-save{
+	background-image:url(../img/ico/filesave.png);
+}
+.ico-close{
+	background-image:url(../img/ico/cancel.png);
+}
+.ico-gemo{
+	background:url('../img/ico/lastposition.png') no-repeat;
+>>>>>>> 17ac48076d7a7be7437c8367312af01562698b1c
 }

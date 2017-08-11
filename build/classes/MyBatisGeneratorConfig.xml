@@ -50,7 +50,7 @@
 		     tableName为对应的数据库表  可以使用通配符%
 		     domainObjectName是要生成的实体类  
 		     enable*ByExample   是否生成 example类   -->	
-		<table schema="${jdbc_user}" tableName="sys_user" domainObjectName="Sys_user"  
+		<table schema="${jdbc_user}" tableName="edu_news" domainObjectName="Edu_news"  
 			enableSelectByExample="false"
 			enableCountByExample="false"
 			enableUpdateByExample="false"

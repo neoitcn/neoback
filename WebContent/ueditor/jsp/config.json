@@ -5,12 +5,12 @@
     "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
     "imageCompressEnable": true,
     "imageCompressBorder": 1600, 
-    "imageInsertAlign": "none", 
-    "imageUrlPrefix":"/news/images", 
-    "imagePathFormat":"/news/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "imageInsertAlign": "none",  
+    "imageUrlPrefix":"http://localhost:8080/neoback", 
+    "imagePathFormat":"/news/images/{time}{rand:6}", 
     
      
-    "scrawlActionName": "uploadscrawl", 
+    "scrawlActionName":"uploadscrawl", 
     "scrawlFieldName": "upfile",
     "scrawlPathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "scrawlMaxSize": 2048000, 

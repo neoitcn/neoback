@@ -18,11 +18,33 @@
 		<meta http-equiv="expires" content="0">
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
+   
+   <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 </head>
+
+<script type="text/javascript">
+	function picname(){
+		 var spans = document.getElementById("picture").getElementsByTagName("img");
+	       
+		if (spans.length > 2) {
+			for (i = 0; i < spans.length; i++) {
+				var result = spans.item(i).alt;
+                /* alert(i+":"+spans.item(i).alt); */
+				$("#info").append('保存的图片名称:<input type="text" name="pic" value="'+result+'"/><br>');
+
+			}
+		}
+		
+	}
+</script>
 <body>
     欢迎来到启芯教育。。。。。。
+    内容是: ${content}
+  上传图片信息: ${msg } 
     
-       内容是: ${content}
+    
+
+    
   
 </body>
 </html> 

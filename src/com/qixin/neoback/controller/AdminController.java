@@ -1,45 +1,26 @@
 package com.qixin.neoback.controller;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.qixin.neoback.biz.AdminBiz;
-import com.qixin.neoback.entity.News;
-
-import freemarker.template.Configuration;
-import freemarker.template.DefaultObjectWrapper;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import freemarker.template.TemplateExceptionHandler;
+import com.qixin.neoback.entity.Edu_news;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -48,72 +29,29 @@ public class AdminController {
 	@Resource(name = "adminBiz")
 	private AdminBiz adminBiz;
 
-	//1.上传新闻
+	// 1.上传新闻
 	@RequestMapping(value = "/uploadNews")
-	public String uploadNews(News news,
-			String content,
-			@RequestParam(value = "smallpicture")MultipartFile smallpicture,
-			Map<String, Object> map,
+	public String uploadNews(Edu_news news, String[] pic, String content,
+			@RequestParam(value = "smallpicture") MultipartFile smallpicture, Map<String, Object> map,
 			HttpServletRequest request) {
-		
-		System.out.println("content:" + content);
-		//加上HTML头和尾 ,生成HTML页面;
-		String htmlcontent="<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>Insert title here</title></head><body>"
-		               +content+"</body></html>";
-		
-		//利用当前日期作为新闻地址  和  缩略图名称
-		long lon = new Date().getTime();
-		news.setHtmlUrl(lon + ".html");
-		news.setCreateTime(new Date());
-		System.out.println("path:" + lon);
-		// File file=new File("D:/test.html");
-		File file = new File("D:/news/"+ news.getType() + "/" + lon + ".html");
 
 		try {
-			if (!file.exists()) {
-				file.createNewFile();
-				if(!file.createNewFile()) {
-					System.out.println("创建了新文件...");
-				}
+			// -----------------1.上传新闻缩略图
+			// 若标题图片为空则返回
+			if (smallpicture.getOriginalFilename().equals("")) {
+				request.setAttribute("msg", "请选择新闻标题图片..");
+				return "main";
 			}
-			//通过字符流写入到指定文件夹
-			FileOutputStream out = new FileOutputStream(file, true);
-			StringBuffer sb = new StringBuffer();
-			sb.append(htmlcontent);
-			out.write(sb.toString().getBytes("utf-8"));
-			out.close();
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			String filename = smallpicture.getOriginalFilename();// 获取缩略图名称
+			int index = filename.lastIndexOf(".");
+			String filetype = filename.substring(index + 1);// 获得图片后缀名
+			System.out.println("图片后缀:" + filetype);
+			System.out.println("图片名称:" + smallpicture.getOriginalFilename());
+			System.out.println("图片smallpicture:" + smallpicture);
+			System.out.println("上传图片的类型:" + smallpicture.getContentType());
 
-		System.out.println("Done");
-
-		map.put("content", htmlcontent);
-
-		return "main";
-	}
-
-	@RequestMapping(value = "/addNews", method = RequestMethod.POST)
-	public String addNews(@RequestParam(value = "headimg") MultipartFile headimg, News news, String newscontent,
-			String picturedesc, HttpServletRequest req) {
-
-		try {
-
-			System.out.println("进入addNews...新闻内容:" + newscontent);
-			System.out.println("图片名称:" + headimg.getOriginalFilename());
-			System.out.println("图片desc:" + picturedesc);
-			System.out.println("上传图片的类型:" + headimg.getContentType());
-
-			System.out.println("作者:" + news.getAuthor());
-			System.out.println("新闻地址:" + news.getHtmlUrl());
+			// 定义新闻缩略图上传类型
 			List<String> typelist = new ArrayList<String>();
 			typelist.add("JPG");
 			typelist.add("jpg");
@@ -123,84 +61,73 @@ public class AdminController {
 			typelist.add("bmp");
 			typelist.add("PNG");
 			typelist.add("png");
-
-			System.out.println("headimg:" + headimg.getOriginalFilename());
-			// 上传新闻图片
-			String picname = null;
-
-			if (headimg != null) {
-				// 设定图片保存的路径path
-				/*
-				 * File file=new File("neoback/WebContent/NEWS/IMAGES");
-				 * 
-				 * //"C:/Users/zhu/workspace/neoback/WebContent/NEWS/IMAGES/";
-				 * String path=file.getAbsolutePath().replace("\\", "/")+"/";
-				 * System.out.println("gg:"+path);
-				 */
-				String path = " C:/Users/zhu/workspace/neoback/WebContent/NEWS/IMAGES/";
-				String filename = headimg.getOriginalFilename();// 获取文件名称
-				int index = filename.lastIndexOf(".");
-				String filetype = filename.substring(index + 1);
-				System.out.println("4..." + filetype);
-				if (!typelist.contains(filetype)) {
-
-					req.setAttribute("msg", "上传文件类型不对..");
-					return "main";
-				}
-
-				// filepath=req.getServletContext().getRealPath("/images/"+date.getTime()+filename);
-				// 保存文件(两种:1.通过流读取和写入,2.通过MultipartFile的transferTo保存)
-				picname = new Date().getTime() + "_" + filename;
-
-				String picpath = path + picname;
-				headimg.transferTo(new File(picpath));
-
-				req.setAttribute("msg", "图片上传成功..");
+			//图片类型不对则返回..
+			if (!typelist.contains(filetype)) {
+				request.setAttribute("msg", "上传文件类型不对..");
+				return "main";
 			}
+			
+			long lon = new Date().getTime();//利用当前日期作为 缩略图名称 (也用做下面新闻地址)
+			System.out.println("lon1:" + lon);
+			//设定图片保存的路径path
+			String path = "E:/github/neoback/WebContent/news/images/titleimages/";
+             // 保存文件(两种:1.通过流读取和写入,2.通过MultipartFile的transferTo保存)
+			String picpath = path + lon + "." + filetype;
+			smallpicture.transferTo(new File(picpath));
+			System.out.println("图片上传成功.......");
+			request.setAttribute("msg", "图片上传成功1..");
+			// ---------------2.以下是新闻内容
+			System.out.println("content:" + content);
+			// 加上HTML头和尾 ,生成HTML页面;
+			String htmlcontent;
+			htmlcontent = "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>Insert title here</title></head><body>"
+					+ content + "</body></html>";
 
-			// 添加新闻表
-			Date aa = new Date();
-
-			news.setCreateTime(aa);
-			adminBiz.insert(news);
-			// ------------------------------ 以下是 生成新闻链接文件HTML-----------------
-			Configuration cfg = new Configuration();
-			// 设置模板路径test.ftl
-			// File file = new File("WebContent/NEWS/newsmold"); String dir =
-			// file.getAbsolutePath().replace("\\", "/") + "/";
-			String dir = "C:/Users/zhu/workspace/neoback/WebContent/NEWS/newsmold/";
-
-			// 从哪里加载模板文件
-			cfg.setDirectoryForTemplateLoading(new File(dir));
-			// 设置对象包装器
-			cfg.setObjectWrapper(new DefaultObjectWrapper());
-			// 设置异常处理器
-			cfg.setTemplateExceptionHandler(TemplateExceptionHandler.IGNORE_HANDLER);
-
-			// 定义数据模型 (传送到新闻展示页面的数据)
-			Map map = new HashMap();
-			map.put("abc", "启芯教育欢迎你....");
-			// map.put("content", content);
-			map.put("newscontent", newscontent);
-			map.put("picname", picname);
-
-			// 通过freemarker解释模板，首先需要获得Template对象
-			Template template = cfg.getTemplate("test.ftl");
-			// 定义模板解释完成之后的输出
-			String html = "C:/Users/zhu/workspace/neoback/WebContent/NEWS/" + news.getLevel() + "/";
-			PrintWriter out = new PrintWriter(
-					new BufferedWriter(new FileWriter(html + "/" + new Date().getTime() + ".html")));
-
-			// 解释模板
-			template.process(map, out);
-
+			System.out.println("lon2:" + lon);
+			File file = new File("E:/github/neoback/WebContent/news/" + news.getType() + "/" + lon + ".html");
+			if (!file.exists()) {
+				file.createNewFile();
+				if (!file.createNewFile()) {
+					System.out.println("news下面创建了新文件...");
+				}
+			}
+			// 通过字符流写入到指定文件夹
+			FileOutputStream out = new FileOutputStream(file, true);
+			StringBuffer sb = new StringBuffer();
+			sb.append(htmlcontent);
+			out.write(sb.toString().getBytes("utf-8"));
+			out.close();
+			map.put("content", htmlcontent);
+			
+			//----------3.补充news的一些前台没传过来的数据  
+			news.setHtmlUrl(lon+".html");
+			news.setTitleImage(lon+"."+filetype);
+			news.setCreateTime(new Date());
+			news.setEnabled(0);
+			news.setDeleted(0);
+			 //添加新闻
+			adminBiz.insertSelective(news);
+			
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return "NEWS/newsshow";
+		System.out.println("Done");
 
+		return "main";
 	}
 
 }
