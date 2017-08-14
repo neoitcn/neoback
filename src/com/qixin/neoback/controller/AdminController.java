@@ -100,6 +100,8 @@ public class AdminController {
 			map.put("content", htmlcontent);
 			
 			//----------3.补充news的一些前台没传过来的数据  
+			
+			
 			news.setHtmlUrl(lon+".html");
 			news.setTitleImage(lon+"."+filetype);
 			news.setCreateTime(new Date());
