@@ -34,8 +34,14 @@ public class Test {
 	    	file.createNewFile();
 	    	System.out.println("不存在2..");
 	    }*/
-	    
-	 
+		
+		String AA="<div class=\"navbar navbar-default navbar-static-top\">"
+				+ "<div class=\"container\"><div class=\"navbar-header\">"
+				+ "<button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">"
+				+ "<span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>";	
+	
+		
+		System.out.println("11----:"+AA);
 		     
 		
 	}
