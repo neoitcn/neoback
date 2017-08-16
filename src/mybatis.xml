@@ -12,6 +12,8 @@
     <!-- mapper配置 -->
 	<mappers>
 		<mapper resource="com/neo/mapper/Edu_newsMapper.xml" />
+		<mapper resource="com/neo/mapper/Sys_officeMapper.xml" />
+		<mapper resource="com/neo/mapper/Sys_userMapper.xml" />
 		
 	</mappers>
 </configuration>	

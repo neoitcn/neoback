@@ -38,7 +38,8 @@ public class AdminController {
 			HttpServletRequest request) {
 
 		try {
-			// -----------------1.上传新闻缩略�?
+			 System.out.println("已进入uploadNews......");
+			// -----------------1.上传新闻缩略图
 			// 若标题图片为空则返回
 			if (smallpicture.getOriginalFilename().equals("")) {
 				request.setAttribute("msg", "请�?�择新闻标题图片..");
@@ -424,7 +425,7 @@ public class AdminController {
 
 		System.out.println("Done");
 
-		return "pages/main";
+		return "main";
 	}
 
 }

@@ -18,13 +18,13 @@
 </bean>
 
 
-   <!-- SPRINGMVC 实现 ajax的JSON 返回@ResponseBody -->
+    <!-- SPRINGMVC 实现 ajax的JSON 返回@ResponseBody -->
     <mvc:annotation-driven></mvc:annotation-driven>
 	
 	<!-- 配置上传文件信息 -->
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
-		<property name="maxUploadSize" value="1024000*3"></property>
+		<property name="maxUploadSize" value="1024000"></property>
   </bean>
 
    <!--  默认错误页面配置  -->
