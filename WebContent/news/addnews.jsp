@@ -18,7 +18,7 @@
 	function picname(){
 		var ue = UE.getEditor('container');
 		var str=ue.getPlainTxt();//s就是编辑器的带格式的内容
-		//alert("编辑器内容是:"+str);
+		alert("编辑器内容是:"+str);
 		
 		//var str='<img src="1502274370754037759.png" title="1502274370754037759.png" alt="66.png"/><br>HAHAH<img src="1502274370754037759.png" title="1502274370754037759.png" alt="777.png"/><br>';
 		//匹配图片（g表示匹配所有结果i表示区分大小写）
@@ -26,13 +26,13 @@
 		//匹配src属性
 		var srcReg = /title=[\'\"]?([^\'\"]*)[\'\"]?/i;
 		var arr = str.match(imgReg);
-		//alert('所有已成功匹配图片的数组：'+arr);
+		alert('所有已成功匹配图片的数组：'+arr);
 		if(arr!=null){
 		for (var i = 0; i < arr.length; i++) {
 		 var src = arr[i].match(srcReg);
 		 //获取图片地址
 		 if(src[1]){
-		 // alert('已匹配的图片地址'+(i+1)+'：'+src[1]);
+		  alert('已匹配的图片地址'+(i+1)+'：'+src[1]);
 		 $("#savepic").append('保存的图片名称:<input type="text" name="pic" value="'+src[1]+'"/><br>');
 				
 		 }
@@ -51,14 +51,14 @@
 	    }
 	    else
 	    {
-	    // alert("进入check3...");
+	     alert("进入check3...");
 	    if(aa[aa.length-1]=='gif'||aa[aa.length-1]=='jpg'||aa[aa.length-1]=='bmp'
 	     ||aa[aa.length-1]=='png'||aa[aa.length-1]=='jpeg')//判断图片格式
 	    {
 		var imagSize =  document.getElementById("userfile").files[0].size;
 		 alert("图片大小："+imagSize+"B")
 		if(imagSize<1024*1024*3){
-	       // alert("图片大小在3M以内，为："+imagSize/(1024*1024)+"M");
+	        alert("图片大小在3M以内，为："+imagSize/(1024*1024)+"M");
 	        document.getElementById("picsize").innerHTML="";
 	       return true;
 		}else{

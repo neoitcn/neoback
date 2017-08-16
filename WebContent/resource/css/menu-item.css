@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .menu-item ul, li {
 	margin: 0;
 	padding: 0;
@@ -75,4 +76,83 @@
 	position: absolute;
 	left: 100%;
 	top: 0;
+=======
+.menu-item ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.menu-item ul {
+	box-shadow: 0px 2px 1px rgba(0, 0, 0, .5);
+}
+
+.menu-item li {
+	float: left;
+	line-height: 50px;
+	cursor: pointer;
+}
+
+.menu-item li a {
+	display: block;
+	padding: 0px 10px;
+	box-sizing: border-box;
+	text-decoration: none;
+	color:black;
+}
+
+.menu-item li ul {
+	display: none;
+}
+
+.menu-item li ul {
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	z-index: 998;
+}
+
+.menu-item li ul li {
+	clear: both;
+	margin: 0;
+	width: 100%;
+	color: #000000;
+	text-align: left;
+}
+
+.menu-item ul li:hover>ul {
+	display: block;
+}
+
+.menu-item ul li:hover>ul li {
+	background-color: #FFFFFF;
+}
+
+/* .menu-item ul li ul li:hover {
+	background-color: #00a8ff;
+} */
+
+.menu-item ul li:hover > a{
+	background-color: rgba(0,168,255,.5);
+	color: #FFFFFF;
+}
+
+.menu-item ul ul {
+	position: absolute;
+	top: 100%;
+}
+
+.menu-item ul ul li {
+	position: relative;
+}
+
+.menu-item ul ul ul li {
+	float: none;
+	white-space: nowrap; /*自动扩展的重要属性*/
+}
+
+.menu-item ul ul ul {
+	position: absolute;
+	left: 100%;
+	top: 0;
+>>>>>>> 17ac48076d7a7be7437c8367312af01562698b1c
 }

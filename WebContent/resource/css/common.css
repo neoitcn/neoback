@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .readonly input[readonly]{
     background-color:#E0E0E0;
 }
@@ -16,4 +17,24 @@
     filter: blur(0px) !important;
 
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=0, MakeShadow=false) !important; /* IE6~IE9 */
+=======
+.readonly input[readonly]{
+    background-color:#E0E0E0;
+}
+.g-blur{
+    -webkit-filter: blur(10px); /* Chrome, Opera */
+    -moz-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+}
+.g-blur-no{
+    -webkit-filter: blur(0px) !important; /* Chrome, Opera */
+    -moz-filter: blur(0px) !important;
+    -ms-filter: blur(0px) !important;
+    filter: blur(0px) !important;
+
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=0, MakeShadow=false) !important; /* IE6~IE9 */
+>>>>>>> 17ac48076d7a7be7437c8367312af01562698b1c
 }

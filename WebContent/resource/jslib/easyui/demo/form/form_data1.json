@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 {
 	"name":"easyui",
 	"email":"easyui@gmail.com",
 	"subject":"Subject Title",
 	"message":"Message Content",
 	"language":"de"
+=======
+{
+	"name":"easyui",
+	"email":"easyui@gmail.com",
+	"subject":"Subject Title",
+	"message":"Message Content",
+	"language":"de"
+>>>>>>> 17ac48076d7a7be7437c8367312af01562698b1c
 }
