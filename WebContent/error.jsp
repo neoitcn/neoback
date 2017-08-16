@@ -18,6 +18,6 @@
 		<meta http-equiv="description" content="This is my page">
 </head>
 <body>
-	error....
+	上传error....
 </body>
 </html>
