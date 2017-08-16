@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
 <!-- 配置控制器所在包 -->
-<context:component-scan base-package="com.qixin.neoback.controller"></context:component-scan>
+<context:component-scan base-package="com.neo.controller"></context:component-scan>
 
 <!-- 配置视图解析器 -->
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -24,7 +24,7 @@
 	<!-- 配置上传文件信息 -->
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
-		<property name="maxUploadSize" value="1024000"></property>
+		<property name="maxUploadSize" value="1024000*3"></property>
   </bean>
 
    <!--  默认错误页面配置  -->

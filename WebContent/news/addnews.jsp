@@ -14,7 +14,7 @@
  <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 </head>
 <script type="text/javascript">
- /* 获取ueditor编辑器内容中img标签中图片的名称(alt的值), 保存到 <input/>中 */
+ /* 1.获取ueditor编辑器内容中img标签中图片的名称(alt的值), 保存到 <input/>中 */
 	function picname(){
 		var ue = UE.getEditor('container');
 		var str=ue.getPlainTxt();//s就是编辑器的带格式的内容
@@ -39,12 +39,11 @@
 		}}
 		document.forms.submit();
 	}
-    //控制上传标题图片的大小
+  //2.控制上传标题图片的大小
 	 function check(){
-	    alert("进入check1...");
+   	    var obj = document.getElementById("userfile") ; 
 	    var aa=document.getElementById("userfile").value.toLowerCase().split('.');//以“.”分隔上传文件字符串
 	   // var aa=document.form1.userfile.value.toLowerCase().split('.');//以“.”分隔上传文件字符串
-	      alert("进入check2...");  
 	    if(document.forms.userfile.value=="")
 	    {
 	        alert('图片不能为空！');
@@ -52,25 +51,28 @@
 	    }
 	    else
 	    {
-	    	 alert("进入check3...");
+	     alert("进入check3...");
 	    if(aa[aa.length-1]=='gif'||aa[aa.length-1]=='jpg'||aa[aa.length-1]=='bmp'
 	     ||aa[aa.length-1]=='png'||aa[aa.length-1]=='jpeg')//判断图片格式
 	    {
 		var imagSize =  document.getElementById("userfile").files[0].size;
 		 alert("图片大小："+imagSize+"B")
-		if(imagSize<1024*1024*1){
+		if(imagSize<1024*1024*3){
 	        alert("图片大小在3M以内，为："+imagSize/(1024*1024)+"M");
-	        return true;
+	        document.getElementById("picsize").innerHTML="";
+	       return true;
 		}else{
-			alert("图片大小超过了3M以外,请重新上传!");
-		    document.getElementById("picsize").innerHTML='<p style="color:red;">警告:新闻标题图片不得超过3M,请重新上传!</p>';
+			obj.outerHTML=obj.outerHTML; 
+		    document.getElementById("picsize").innerHTML='<p style="color:red;font-size:14px;">警告:标题图片不得超过3M,请重新上传!</p>';
 			return false;
 		}  
      
 	    }else
-	    { alert("进入check4...");
-	       alert('请选择格式为*.jpg、*.gif、*.bmp、*.png、*.jpeg 的图片');//jpg和jpeg格式是一样的只是系统Windows认jpg，Mac OS认jpeg，
-	//二者区别自行百度
+	    {  
+	       obj.outerHTML=obj.outerHTML; 
+	       document.getElementById("picsize").innerHTML='<p style="color:red;font-size:14px;">格式错误!请选择格式为(*.jpg、*.gif、*.bmp、*.png、*.jpeg)的图片重新上传!</p>';
+	       //alert('请选择格式为*.jpg、*.gif、*.bmp、*.png、*.jpeg 的图片');//jpg和jpeg格式是一样的只是系统Windows认jpg，Mac OS认jpeg，
+	       //二者区别自行百度
 	        return false;
 	    }
      }
@@ -79,15 +81,12 @@
 <body>
 
   <div  style="margin:auto;width:1025px;">
-	<form action="../admin/uploadNews.do"  name="forms" method="post"  enctype="multipart/form-data">
+	<form action="../admin/uploadNews.do"  name="forms" method="post"  enctype="multipart/form-data"  >
 		<!--此div保存新闻中的图片的名字 -->
         <div id="savepic"></div>
-		
-		
 		请输入新闻标题:<input type="text"  name="title" /><br><br>
-		请上传新闻缩略图:<input type="file"  name="smallpicture"  id="userfile" onchange="check()"/><br><br>
-		        <input type="text" name="MAX_FILE_SIZE" value="100000" /><br>
-		        <div id="picsize"></div>
+		请上传新闻缩略图:<input type="file"  name="smallpicture"  id="userfile" onchange="check()"/><p id="picsize"></p><br><br>
+			      
 		请输入新闻概要:<textarea rows="3" cols="50" name="resume"></textarea><br><br>
 		请选择新闻类型:<select  id =  "sel" name="type" >
 					 <option  value = "1" >头条新闻</option >

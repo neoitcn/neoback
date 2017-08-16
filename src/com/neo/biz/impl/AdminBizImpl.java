@@ -1,0 +1,60 @@
+package com.neo.biz.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import com.neo.biz.AdminBiz;
+import com.neo.entity.Edu_news;
+import com.neo.mapper.Edu_newsMapper;
+
+
+public class AdminBizImpl  implements  AdminBiz{
+	Edu_newsMapper edu_newsMapper;
+	
+	@Override
+	public List<Edu_news> findNewsByTypeAndLevel(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int insertSelective(Edu_news record) throws Exception {
+		// TODO Auto-generated method stub
+		return edu_newsMapper.insertSelective(record);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Edu_news record) throws Exception {
+		// TODO Auto-generated method stub
+		return edu_newsMapper.updateByPrimaryKeySelective(record);
+	}
+
+	@Override
+	public int deleteByPrimaryKey(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return edu_newsMapper.deleteByPrimaryKey(id);
+	}
+
+	
+	@Override
+	public Edu_news selectByPrimaryKey(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return edu_newsMapper.selectByPrimaryKey(id);
+	}
+
+	
+	public Edu_newsMapper getEdu_newsMapper() {
+		return edu_newsMapper;
+	}
+
+	public void setEdu_newsMapper(Edu_newsMapper edu_newsMapper) {
+		this.edu_newsMapper = edu_newsMapper;
+	}
+
+	
+	
+
+	
+	
+	
+
+}

@@ -1,0 +1,21 @@
+.Wdate{
+	border:#BEBEBE 1px solid;
+	height:19px;
+	line-height:19px;
+	background:#fff url(datePicker.gif) no-repeat right;
+	cursor:pointer;
+	width:145px;
+}
+.un_Wdate{
+	border:#BEBEBE 1px solid;
+	height:19px;
+	line-height:19px;
+	background:#fafafa url(datePicker.gif) no-repeat right;
+	cursor:pointer;
+	width:145px;
+}
+
+.WdateFmtErr{
+	font-weight:bold;
+	color:red;
+}

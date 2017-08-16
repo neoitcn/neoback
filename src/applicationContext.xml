@@ -35,18 +35,18 @@
 	</tx:advice>
 	<!-- 配置切面 -->
 	 <aop:config>
-		<aop:pointcut id="pointcut" expression="execution(* com.qixin.neoback.biz.impl.*.*(..))" />
+		<aop:pointcut id="pointcut" expression="execution(* com.neo.biz.impl.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
 	</aop:config> 
 	<!-- 配置dao生成器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.qixin.neoback.mapper"></property>
+		<property name="basePackage" value="com.neo.mapper"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 	
 	<!-- 配置Biz -->
 	
-	<bean id="adminBiz" class="com.qixin.neoback.biz.impl.AdminBizImpl" autowire="byName"></bean>
+	<bean id="adminBiz" class="com.neo.biz.impl.AdminBizImpl" autowire="byName"></bean>
 	
 
 </beans>
